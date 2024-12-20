@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "dev-research-mentorship-dev",
+    "prod": "dev-research-mentorship-prod",
+    "default": "dev-research-mentorship-dev"
+  }
+}

@@ -1,0 +1,92 @@
+/* Tailwind CSS essential classes. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Roboto font import. */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
+
+/* Custom bux-timeline styling. */
+.bux-timeline-horizontal {
+  position: relative;
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.bux-timeline-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 4px;
+  width: 100%;
+  background: #cfd4d8;
+}
+.bux-timeline-horizontal__marker {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 0 4px #ba0c2f;
+  border-radius: 50%;
+  margin-top: -2.75rem;
+  margin-left: 0.6em;
+}
+.bux-timeline-horizontal__content {
+  padding: 16px 24px;
+  background-color: #fff;
+  border: 2px solid #eff1f2;
+  border-top: 0;
+  box-shadow: 0 -4px 0 0 #ba0c2f;
+  width: 100%;
+}
+.bux-timeline-horizontal__item {
+  position: relative;
+  margin-bottom: 48px;
+  margin-top: 1em;
+  width: 25%;
+}
+.bux-timeline-horizontal__item::after {
+  margin-left: 0;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border: 1rem solid transparent;
+  border-bottom-color: #eff1f2;
+  top: -2.25rem;
+}
+.bux-text-area__text-area,
+.bux-text-field__input {
+  border: 2px solid #212325 !important;
+}
+
+/* Loading animation styling, i.e. <div className="loader" /> . */
+.loader {
+  border: 10px solid #f6f7f8;
+  border-radius: 50%;
+  border-top: 10px solid #ba0c2f;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 0.75s linear infinite;
+  animation: spin 0.75s linear infinite;
+  display: table;
+  margin: 24px auto;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,153 @@
+rules_version = '2';
+
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------------------
+    // User auth and document state helper functions.
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOneOfTypes(targetTypes) {
+      let userType = get(/databases/$(database)/documents/users/$(request.auth.uid)).data.userType;
+      return (userType in targetTypes);
+      // return request.auth.token.userType in targetTypes;
+    }
+
+    function isSignedInAdmin() {
+      return isSignedIn() && isOneOfTypes(["admin", "superAdmin"]);
+    }
+
+    function isSignedInSuperAdmin() {
+      return isSignedIn() && isOneOfTypes(["superAdmin"]);
+    }
+
+    function isSignedInSelf(id) {
+      return isSignedIn() && request.auth.uid == id;
+    }
+
+    function isAdminApproved() {
+      let adminApproved = get(/databases/$(database)/documents/users/$(request.auth.uid)).data.adminApproved;
+      return (adminApproved == true);
+      // return request.auth.token.adminApproved == true;
+    }
+
+    // [users] collection:
+    //
+    //   - create : auto-triggered by first sign-in and handled by Cloud Function.
+    //
+    //   - read   :
+    //     - get  :
+    //       - authed users can get own record.
+    //     - list :
+    //       - authed (super) admin users can read all records.
+    //       - authed admin-approved users can read approved mentors' non-admin records.
+    //       
+    //   - update :
+    //     - authed users can update own non-admin records.
+    //     - authed (super) admin users can update all non-admin fields.
+    //
+    //   - delete :
+    //     - not (yet) allowed.
+    //
+    match /users/{id} {
+
+    	allow create: if false;
+
+      allow get: if isSignedInSelf(id)
+                  || isSignedInAdmin();
+
+      allow list: if (isSignedIn() && isAdminApproved())
+                  || isSignedInAdmin();
+
+      allow update: if isSignedInSelf(id) 
+                    || isSignedInAdmin();
+
+      allow delete: if false;
+
+      // [metadata] sub-collection:
+      //
+      //   - create : handled by Cloud Function.
+      //   - read   : authed (super) admin users can read all records.
+      //   - update : currently triggered by application submission for authed users.
+      //   - delete : not allowed.
+      //
+      //match /metadata/{metadataField} {
+      //  allow create, delete: if false;
+      //  allow read: if isSignedInAdmin();
+      //  allow update: if isSignedInSelf(id);
+      //}
+    }
+
+    // [blacklist] collection:
+    //
+    //   - create : (super) admin-only, and record not already exist.
+    //
+    //   - read   :
+    //     - get  : authed users can read own id.
+    //     - list : authed (super) admin users can read all ids.
+    //
+    //   - update : authed super admin users only.
+    //
+    //   - delete : authed super admin users only.
+    //
+    match /blacklist/{hashedEmail} {
+      allow create: if isSignedInAdmin()
+                    && !exists(/databases/$(database)/documents/blacklist/$(hashedEmail));
+
+      allow read: if isSignedIn();
+
+      allow update, delete: if isSignedInSuperAdmin();
+
+      // [metadata] sub-collection:
+      //
+      //   - create : handled by Cloud Function.
+      //   - read   : authed (super) admin users can read all records.
+      //   - update : handled by Cloud Function.
+      //   - delete : not allowed.
+      //
+      match /metadata/{metadataField} {
+        allow create, update, delete: if false;
+        allow read: if isSignedInAdmin();
+      }
+    }
+
+    match /waitlist/{hashedEmail} {
+      allow create: if isSignedInAdmin()
+                    && !exists(/databases/$(database)/documents/blacklist/$(hashedEmail));
+
+      allow get: if isSignedIn();
+
+      allow list: if isSignedInAdmin();
+
+      allow update, delete: if isSignedInSuperAdmin();
+
+      // [metadata] sub-collection:
+      //
+      //   - create : handled by Cloud Function.
+      //   - read   : authed (super) admin users can read all records.
+      //   - update : handled by Cloud Function.
+      //   - delete : not allowed.
+      //
+      //match /metadata/{metadataField} {
+      //  allow create, update, delete: if false;
+      //  allow read: if isSignedInAdmin();
+      //}
+    }
+
+    // [bugReports] collection:
+    //
+    //   - create : anyone, and record not already exist.
+    //   - read   : authed (super) admin users only.
+    //   - update : not (yet) allowed.
+    //   - delete : not (yet) allowed.
+    match /bugReports/{id} {
+      allow create: if !exists(/databases/$(database)/documents/bugReports/$(id));
+      allow read: if isSignedInAdmin();
+      allow update, delete: if false;
+    }
+  }
+}

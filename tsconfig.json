@@ -1,0 +1,77 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@scripts/*": [
+        "scripts/*",
+      ],
+      "@src/*": [
+        "src/*",
+      ],
+      "@app/*": [
+        "src/app/*",
+      ],
+      "@components/*": [
+        "src/components/*",
+      ],
+      "@constants/*": [
+        "src/constants/*",
+      ],
+      "@contexts/*": [
+        "src/contexts/*",
+      ],
+      "@guards/*": [
+        "src/guards/*",
+      ],
+      "@handlers/*": [
+        "src/handlers/*",
+      ],
+      "@hooks/*": [
+        "src/hooks/*",
+      ],
+      "@lib/*": [
+        "src/lib/*",
+      ],
+      "@schemas/*": [
+        "src/schemas/*",
+      ],
+      "@utils/*": [
+        "src/utils/*",
+      ],
+    },
+  },
+  "include": [
+    "next-env.d.ts",
+    "scripts/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+  ],
+}
