@@ -1,5 +1,7 @@
 # Changelog
 
+## 3.23.4 (2024-12-20)
+
 ## [3.23.3](https://github.com/data-glow-gh/devosu-research-mentorship-frontend/compare/v3.23.2...v3.23.3) (2024-11-18)
 
 ### Bug Fixes
