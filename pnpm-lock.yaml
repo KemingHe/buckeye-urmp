@@ -62,7 +62,7 @@ importers:
         version: 1.9.4
       '@release-it/conventional-changelog':
         specifier: github:release-it/conventional-changelog
-        version: https://codeload.github.com/release-it/conventional-changelog/tar.gz/f86194d31183d433a48976ad0a89cc01b49f4c5a(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))
+        version: git+https://git@github.com:release-it/conventional-changelog.git#f86194d31183d433a48976ad0a89cc01b49f4c5a(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))
       '@types/node':
         specifier: ^22.9.0
         version: 22.9.0
@@ -1192,8 +1192,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
 
-  '@release-it/conventional-changelog@https://codeload.github.com/release-it/conventional-changelog/tar.gz/f86194d31183d433a48976ad0a89cc01b49f4c5a':
-    resolution: {tarball: https://codeload.github.com/release-it/conventional-changelog/tar.gz/f86194d31183d433a48976ad0a89cc01b49f4c5a}
+  '@release-it/conventional-changelog@git+https://git@github.com:release-it/conventional-changelog.git#f86194d31183d433a48976ad0a89cc01b49f4c5a':
+    resolution: {commit: f86194d31183d433a48976ad0a89cc01b49f4c5a, repo: git@github.com:release-it/conventional-changelog.git, type: git}
     version: 9.0.3
     engines: {node: ^18.18.0 || ^20.9.0 || ^22.0.0}
     peerDependencies:
@@ -2770,8 +2770,8 @@ packages:
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
 
-  nanoid@3.3.7:
-    resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
+  nanoid@3.3.8:
+    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -4930,7 +4930,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@release-it/conventional-changelog@https://codeload.github.com/release-it/conventional-changelog/tar.gz/f86194d31183d433a48976ad0a89cc01b49f4c5a(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))':
+  '@release-it/conventional-changelog@git+https://git@github.com:release-it/conventional-changelog.git#f86194d31183d433a48976ad0a89cc01b49f4c5a(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))':
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 6.0.0(conventional-commits-filter@5.0.0)
@@ -6681,7 +6681,7 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
-  nanoid@3.3.7: {}
+  nanoid@3.3.8: {}
 
   neo-async@2.6.2: {}
 
@@ -6930,13 +6930,13 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.7
+      nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
   postcss@8.4.49:
     dependencies:
-      nanoid: 3.3.7
+      nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
