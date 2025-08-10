@@ -1,4 +1,11 @@
-# Research Mentorship Frontend
+# ⚠️ [Archived] ⚠️ Undergraduate Research Mentorship Program at The Ohio State University
+
+> [!WARNING]
+> **This repository is archived and no longer maintained.**
+>
+> - **Archived**: 2025-08-10 by [@KemingHe](https://github.com/KemingHe)
+> - **Archive reason**: low/no usage of this platform by the Ohio State community
+> - **Inquries and corrections**: email [keminghe.career@gmail.com](mailto:keminghe.career@gmail.com)
 
 ## 🛠️ Installation Steps
 
